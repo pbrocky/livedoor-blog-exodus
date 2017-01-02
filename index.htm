@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Language" content="ja">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <meta http-equiv="X-UA-Compatible" content="IE=7">
+    <meta http-equiv="imagetoolbar" content="no">
+    <link rel="stylesheet" type="text/css" href="all.css">
+    <title>livedoor blog exodus</title>
+</head>
+<body>
+	<ul id="tabNavi">
+	        <li id="start">
+                <a class="tab" href="#start" onclick="lbExodus.tab('start'); return false;">はじめに</a>
+		        <div class="tabContent">
+		        	<p>はじめに</p>
+		        </div>
+	        </li>
+	        <li id="selection">
+	        	<a class="tab" href="#selection" onclick="lbExodus.tab('selection'); return false;">画像urlの抽出</a>
+	            <div class="tabContent">
+	            	<h1>画像のurlの抽出</h1>
+	            	<p>imgタグのsrcのほか、画像へのハイパーリンクも含まれます。</p>
+	            	<form name="urlSelection">
+		            	<input type="checkbox" name="removeThumb" value="" checked="true"><label for="removeThumb">サムネイルは除く</label>
+		            	
+		            	<h2>画像のurlの含まれたテキスト（htmlテキスト、MTエクスポート形式）をペースト</h2>
+		            	<textarea id="selectionInput"></textarea>
+		            	<div>
+		            		<input type="button" value="画像のurlを抽出" onclick="lbExodus.selection();">
+		            	</div>
+		            	
+		            	<h2>画像のurlだけを抜き出した文字列</h2>
+		            	<textarea id="selectionOutput" readonly="true"></textarea>
+		            	<p id="numImage">0</p>
+		            </form>
+	            </div>
+	        </li>
+	        <li id="replace" class="current">
+                <a class="tab" href="#replace" onclick="lbExodus.tab('replace'); return false;">画像urlの置換</a>
+		        <div class="tabContent">
+	            	<h1>画像urlの置換</h1>
+	            	<p>imgタグのsrcのほか、画像へのハイパーリンクも置換します。</p>
+	            	<form name="urlReplace">
+		            	<h2>古い画像のurlの含まれたテキスト（htmlテキスト、MTエクスポート形式）をペースト</h2>
+		            	<textarea id="oldTextInput"></textarea>
+		            	
+		            	<h2>新しい画像のurlの含まれたテキスト（htmlテキスト、Webアルバムのfeed）をペースト</h2>
+		            	<textarea id="newUrlInput"></textarea>		            	
+		            	
+		            	<div>
+		            		<input type="button" value="新しい画像のurlに置換" onclick="lbExodus.replaceUrl();">
+		            	</div>
+		            	
+						<textarea id="newTextOutput" readonly="true"></textarea>
+						<p id="numReplace">0</p>
+		            </form>
+		        </div>
+	        </li>
+	</ul>
+	
+<form style="display:none;">
+<textarea id="shadowTxtarea">
+
+</textarea>
+</form>
+
+	<script type="text/javascript" src="jquery-1.6.2.js"></script>
+	<script type="text/javascript" src="main.js"></script>
+</body>
+</html>

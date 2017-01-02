@@ -1,0 +1,97 @@
+@charset "utf-8";
+/*
+ * CSS Document
+ * 
+ * livedoor blog exodus all.css Version 1.0
+ *
+ * -- document type --
+ *   valid HTML 4.01
+ * 
+ * -- Checked browser --
+ *   firefox 3.6
+ * 
+ * -- history --  
+ *   version 1.0:
+ *     
+ */
+
+/*  Reset
+--------------------------------------------------------------------------------------*/
+	*{
+        zoom:		1;
+        font-size:	12px;
+        margin:		0;
+        padding:	0;
+	}
+	
+	a {
+	        text-decoration:none;
+	}
+	/* テキストエリア内文字サイズのブラウザ間での差異をなくす */
+	textarea, #listTitle {
+	                font-size: 100%;
+	                padding:1px;
+	                width: 400px;
+	                margin-top:10px;
+	        }
+	
+	/* 画像の下にできる隙間をなくす */
+	img { vertical-align: bottom; }
+	
+/*  Tab Navigetion
+--------------------------------------------------------------------------------------*/
+	#tabNavi {
+		position:			absolute;
+		margin:				1em;
+        list-style:			none;
+        width:				780px;
+	}
+	#tabNavi li {
+        display:			block;
+        float:				left;
+		overflow:			hidden;
+        line-height:		24px;
+        height:				24px;
+        width:				100px;     
+        border:				1px solid #999;
+        background-color:	#ccc;
+        margin-left:		4px;
+        margin-bottom:		-1px;
+        text-align:			center;
+	}
+	.tabContent {
+        display:			none;
+        text-align:			left;
+        position:			absolute;
+        top:				25px;
+        left:				0;
+        border-top:			1px solid #999;
+        z-index:			-1;
+        width:				100%;
+        font-weight:		normal;
+        padding:			10px;
+        line-height:		1.8em;
+	}
+	.tab {
+        display:			block;
+        height:				18px;
+        color:				#666;
+	}
+	.tab:hover,
+	.current {
+        z-index:			99 !important;
+        background-color:	#fff !important;
+        line-height:		25px !important;
+        height:				25px !important;
+        border-bottom:		none !important;
+        font-weight:		bold;
+	}
+	.current .tabContent {
+		display: 			block;
+	}
+
+
+	textarea {
+		width:				100%;
+		height:				200px;
+	}

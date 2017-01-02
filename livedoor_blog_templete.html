@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" id="ldblog-standard">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=euc-jp" />
+	<title><$BlogTitle ESCAPE$></title>
+	<style>
+		textarea {
+			border:		0;
+			width:		100%;
+			font-size:	10px;
+			overflow:	hidden;
+		}
+		li {
+			display:	inline-block;
+		}
+	</style>
+</head>
+
+<body>
+	<div>
+		<SetVar NavigatorRange>8</SetVar>
+		<SetVar NavigatorFirstPageText> &lt;&lt; </SetVar>
+		<SetVar NavigatorLastPageText> &gt;&gt; </SetVar>
+		<SetVar NavigatorPrevPageText> &lt; </SetVar>
+		<SetVar NavigatorNextPageText> &gt; </SetVar>
+		<$IndexNavigator$>
+	</div>
+ <!-- Loop Start -->
+	<IndexArticlesLoop>
+		<div>
+			<!-- <IfDateChanged></IfDateChanged> -->
+			<!-- <a href="<$ArticlePermalink$>"></a> -->
+			AUTHOR: YourName<br />
+			TITLE: <$ArticleTitle ESCAPE$><br />
+			STATUS: Publish<br />
+			ALLOW COMMENTS: 1<br />
+			CONVERT BREAKS: default<br />
+			ALLOW PINGS: 1<br />
+			PRIMARY CATEGORY: <IfArticleCategory1><$ArticleCategory1$></IfArticleCategory1><br />
+			CATEGORY: <IfArticleCategory1><$ArticleCategory1$></IfArticleCategory1><IfArticleCategory2>,<$ArticleCategory2$></IfArticleCategory2><br />
+			DATE: <b><$ArticleDateYear$>/<$ArticleDateMonth$>/<$ArticleDateDay$> <$ArticleDateHour$>:<$ArticleDateMinute$>:<$ArticleDateSecond$></b><br />
+			-----<br />
+			BODY:<br />
+	                <textarea><$ArticleBody$></textarea><br />
+			-----<br />
+			EXTENDED BODY:<br />
+	                <IfArticleBodyMore><textarea><$ArticleBodyMore$></textarea><br /></IfArticleBodyMore>
+			-----<br />
+			
+			<CommentsLoop>
+				COMMENT:<br />
+				AUTHOR: <$CommentAuthor ESCAPE$><br />
+				EMAIL: <$CommentEmail ESCAPE$><br />
+				URL: <$CommentUrl$><br />
+				DATE: <i><$CommentDateTime$></i><br />
+				<textarea><$CommentBody$></textarea><br />
+				-----<br />
+			</CommentsLoop>
+			<TrackBacksLoop>
+				COMMENT:<br />
+				AUTHOR: <$PingBlogName ESCAPE$><br />
+                                EMAIL: <br />
+				URL: <$PingBlogUrl$><br />
+				DATE: <i><$PingDateTime$></i><br />
+				<textarea><a href="<$PingBlogUrl$>"><$PingTitle$>|<$PingBlogName ESCAPE$></a><br /><$PingExcerpt$></textarea><br />
+				-----<br />
+			</TrackBacksLoop>
+			<!-- <TrackBacksLoop>
+				PING:<br />
+				TITLE: <$PingTitle ESCAPE$><br />
+				URL: <$PingBlogUrl$><br />
+				IP: 127.0.0.1<br />
+				BLOG NAME: <$PingBlogName ESCAPE$><br />
+				DATE: <i><$PingDateTime$></i><br />
+				<textarea><a href="<$PingBlogUrl$>"><$PingTitle$></a><br /><$PingExcerpt$></textarea><br />
+				-----<br />
+			</TrackBacksLoop> -->
+			--------<br />
+			<br />
+			<br />
+		<!-- <IfArticleRating><$ArticleRatingIcon$></IfArticleRating> -->
+		</div>
+	</IndexArticlesLoop><!-- Loop End -->
+
+<script language="JavaScript" type="text/javascript">
+	(function(){
+		var bArray = document.getElementsByTagName('B');
+		var l = bArray.length;
+		var b, inner, d;
+		for(var i=0; i<l; i++){
+			b = bArray[ i];
+			d = new Date( b.innerHTML);
+			b.innerHTML = convertXX( d.getUTCMonth() +1) +'\/' +convertXX( d.getUTCDate()) +'\/' +d.getUTCFullYear() + ' ' +
+				convert12( d.getUTCHours()) + ':' +convertXX( d.getUTCMinutes()) + ':' +convertXX( d.getUTCSeconds()) +
+				ampm( d.getUTCHours());
+		}
+
+		var iArray = document.getElementsByTagName('I');
+		var l = iArray.length;
+		for(var i=0; i<l; i++){
+			inner = iArray[ i].innerHTML;
+			d = new Date( [
+				inner.substring( 0, 4), '\/',
+				inner.substring( 5, 7), '\/',
+				inner.substring( 8, 10), ' ',
+				inner.substring( 12, 14), ':',
+				inner.substring( 15, 17), ':',
+				'00'
+			].join( ''));
+			iArray[ i].innerHTML = convertXX( d.getUTCMonth() +1) +'\/' +convertXX( d.getUTCDate()) +'\/' +d.getUTCFullYear() + ' ' +
+				convert12( d.getUTCHours()) + ':' +convertXX( d.getUTCMinutes()) + ':' +convertXX( d.getUTCSeconds()) +
+				ampm( d.getUTCHours());
+		}
+		
+		var tArray = document.getElementsByTagName('TEXTAREA');
+		l = tArray.length;
+		var REG_ADS = /<div id="ad_rs"[^<]*?<\/div>/i;
+		for( i=0; i<1; i++){
+			inner = tArray[ i].innerHTML;
+			tArray[ i].innerHTML = inner.replace( REG_ADS, '');
+		}
+
+		function convertXX( n){
+			var str = '' + n;
+			return str.length == 1 ? '0' + str : str;
+		}
+		function convert12( t){
+			return convertXX( ( t > 12) ?  '' + (t -12) : ( t === 0 ? 12 : t));
+		}
+		function ampm( t){
+			return ( t > 12) ? ' PM' : ' AM';
+		}
+		
+		
+		setTimeout(function(){
+			var ad = document.getElementById('ad');
+			if (ad) {
+				ad.parentNode.removeChild(ad);
+			}
+			else {
+				setTimeout(arguments.callee, 100);
+			}
+		}, 100);		
+	})();
+</script>
+
+</body>
+</html>
